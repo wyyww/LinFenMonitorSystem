@@ -1,0 +1,232 @@
+<div class="sidebar-inner scrollable-sidebar">
+    <!--<div class="main-menu">-->
+    <ul class="breadcrumb">
+        <li><span class="primary-font"><i class="icon-home"></i></span>纪律处分</li>
+    </ul>
+    <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6">
+            <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1">被通报人</span><input type="text" class="form-control" ng-model="isname">
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <button class="btn btn-default" ng-click="disciplinaryAwardFind()">查询</button>
+        </div>
+        <div class="col-lg-1 col-lg-offset-5">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">添加</button>
+        </div>
+    </div>
+    <table class="table table-striped" id="dataTable">
+        <thead class="row">
+        <tr>
+            <th class="col-md-2 col-sm-2 showWay">
+                <!-- Split button -->
+                <div class="btn-group">
+                    <a class="inline-block" style="width:80px"> 被通报人</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="punishmentPositiveSequenceOrder('noticeMan')">正序</a></li>
+                        <li><a ng-click="punishmentInvertedOrder('noticeMan')">倒序</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li>列</li>
+                    </ul>
+                </div>
+            </th>
+            <th class="col-md-2 col-sm-2 showWay">
+                <!-- Split button -->
+                <div class="btn-group">
+                    <a class="inline-block" style="width:80px"> 被通报人部门</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="punishmentPositiveSequenceOrder('noticeDepartment')">正序</a></li>
+                        <li><a ng-click="punishmentInvertedOrder('noticeDepartment')">倒序</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li>列</li>
+                    </ul>
+                </div>
+            </th>
+            <th class="col-md-3 col-sm-3 showWay">
+                <!-- Split button -->
+                <div class="btn-group">
+                    <a class="inline-block" style="width:80px">标题</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="punishmentPositiveSequenceOrder('noticeTitle')">正序</a></li>
+                        <li><a ng-click="punishmentInvertedOrder('noticeTitle')">倒序</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li>列</li>
+                    </ul>
+                </div>
+            </th>
+            <th class="col-md-2 col-sm-2 showWay">
+                <!-- Split button -->
+                <div class="btn-group">
+                    <a class="inline-block" style="width:80px">时间</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a ng-click="punishmentPositiveSequenceOrder('noticeTime')">正序</a></li>
+                        <li><a ng-click="punishmentInvertedOrder('noticeTime')">倒序</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li>列</li>
+                    </ul>
+                </div>
+            </th>
+            <th class="col-md-3 col-sm-3 showWay">
+                <!-- Split button -->
+                <div class="btn-group">
+                    <a class="inline-block" style="width:80px">操作</a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">正序</a></li>
+                        <li><a href="#">倒序</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li>列</li>
+                    </ul>
+                </div>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="message in messages">
+            <td ng-click="md()" class="col-md-2 col-sm-2 showWay">{{message.staff}}</td>
+            <td ng-click="md()" class="col-md-2 col-sm-2 showWay">{{message.staffOrgName}}</td>
+            <td ng-click="md()" class="col-md-3 col-sm-3 showWay">{{message.title}}</td>
+            <td ng-click="md()" class="col-md-2 col-sm-2 showWay">{{message.createTime}}</td>
+            <td class="col-md-3 col-sm-3 showWay">
+                <button type="button" class="btn btn-info btn-xs" ng-click="disciplinaryAwardGet(message.id)">修改</button>
+                <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal1" ng-click="deleteGetId(message.id)">删除</button>
+            </td>
+                <!-- Modal -->
+                <!--修改的模态框-->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h6 class="modal-title" id="myModalLabel">操作层</h6>
+                            </div>
+                            <div class="modal-body">
+                                <div class="input-group">
+                                    <span class="input-group-addon">标题</span>
+                                    <input type="text" ng-model="title" class="form-control" ng-value="theMessages.title">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">人员</span>
+                                    <input type="text" ng-model="staff" class="form-control" ng-value="theMessages.staff">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">部门</span>
+                                    <select name="" id="" class="form-control" ng-model="theMessages.staffOrg.id" ng-options="department.id as department.name for department in departments">
+                                        <!--<option value="">请选择</option>-->
+                                    </select>
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-addon">内容</span>
+                                    <textarea type="text" ng-model="content" class="form-control" ng-value="theMessages.content"></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="disciplinaryAwardAlter(message.id)">确定
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!--删除的模态框-->
+            <div class="modal fade bs-example-modal-sm" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="input-group">
+                                <span>确认删除此数据</span>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-model="message.id" ng-click="disciplinaryAwardDeleteData(message.id)">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </tr>
+        </tbody>
+    </table>
+    <!--添加的模态框-->
+    <div class="modal fade bs-example-modal-lg" id="myModal2" tabindex="-1" role="dialog"
+         aria-labelledby="myLargeModalLabel">
+        <div class="form-body">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"
+                                aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h6 class="modal-title">操作层</h6>
+                    </div>
+                    <form name="userData" role="form" class="form-horizontal" novalidate>
+                        <div class="model-body">
+                            <!--标题部分的验证-->
+                            <div class="input-group" ng-class="{'has-error':userData.$submitted && userData.title.$error.required}">
+                                <label class="input-group-addon control-label">标题</label>
+                                <input type="text" class="form-control" name="title" ng-model="title"  required>
+                            </div>
+                            <!--人员部分的验证-->
+                            <div class="input-group" ng-class="{'has-error':userData.$submitted && userData.staff.$error.required}">
+                                <label class="input-group-addon">人员</label>
+                                <input type="text" name="staff" ng-model="staff"
+                                       class="form-control" required>
+                            </div>
+                            <!--部门部分的验证-->
+                            <div class="input-group" ng-class="{'has-error':userData.$submitted && userData.staff.$error.required}">
+                                <label class="input-group-addon">部门</label>
+                                <select name="" name="staffOrgId" class="form-control"
+                                        ng-model="staffOrgId"
+                                        ng-options="department.id as department.name for department in departments">
+                                </select>
+                            </div>
+                            <div class="input-group" ng-class="{'has-error':userData.$submitted && userData.staff.$error.required}">
+                                <label class="input-group-addon">内容</label>
+                                <textarea type="text" name="content" ng-model="content"
+                                          class="form-control" required></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" data-dismiss="{{userData.$invalid?'':'modal'}}"
+                                    ng-model="message.id" ng-click="disciplinaryAwardAddData(message.id)">确定
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--分页-->
+    <div class="breadcrumb padding-xs fixed-bottom">
+        <div class="container">
+            <span ng-click="onePage()"><a>首页</a></span>
+            <span ng-click="user.page<=1?'':befor()" class="{{user.page<=1?'disabled':''"><a class="glyphicon glyphicon-menu-left"></a></span>
+            <input type="text"  ng-model="user.page" style="width: 25px;padding-left: 5px;font-size: 16px;margin:0 10px; " />
+            <span ng-click="(user.page)<pageNum?after():''" class="{{(user.page)<pageNum?'disabled':''"><a class="glyphicon glyphicon-menu-right"></a></span>
+            <span ng-click="lastPage()"><a>尾页</a></span>
+            <span>{{'共'+pageNum+'页'}}</span>
+        </div>
+    </div>
+</div>
+

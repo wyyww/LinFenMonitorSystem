@@ -1,0 +1,107 @@
+<!--申报页面-->
+<div class="well">
+    申报
+</div>
+<form class="form-horizontal" novalidate name="applicationForm">
+    <div class="col-lg-3">
+        <label>申报人：</label>
+        <input name="applicantName" class="form-control" type="text"  required  ng-model="staff" />
+        <div style="color:red" ng-show="applicationForm.applicantName.$dirty&&applicationForm.applicantName.$invalid">
+                <span class="error" ng-show="applicationForm.applicantName.$error.required">
+                    你需要填写申报人姓名
+                </span>
+        </div>
+        <label>配偶：</label>
+        <input name="mateSpouse" type="text" class="form-control" ng-model="staffSpouse "/>
+        <label>操办时间：</label>
+        <input name="handleTime" type="date" class="form-control" ng-model="eventDate" />
+        <label>邀请范围：</label>
+        <input name="invitationScope" type="text" class="form-control" ng-model="peopleRange"/>
+    </div>
+    <div class="col-lg-3">
+        <label>与申报人关系：</label>
+        <select name="relationship" class="form-control"  ng-model="staffRelationship">
+            <option value="1">本人</option>
+            <option value="2">直系亲属</option>
+        </select>
+        <label>联系电话：</label>
+        <input name="telephone" type="text" class="form-control" ng-minlength="7" ng-maxlength="11" required  ng-model="staffPhone" />
+        <div style="color:red" ng-show="applicationForm.telephone.$dirty&&applicationForm.telephone.$invalid">
+                <span class="error" ng-show="applicationForm.telephone.$error.minlength">
+                    你的手机号码长度至少为7位
+                </span>
+            <span class="error" ng-show="applicationForm.telephone.$error.maxlength">
+                    你的手机号码最大长度请小于11位
+                </span>
+        </div>
+        <label>操办地点：</label>
+        <input name="handleAddress" type="text"  class="form-control" required ng-model="location"/>
+        <div style="color:red" ng-show="applicationForm.handleAddress.$dirty&&applicationForm.handleAddress.$invalid">
+                <span class="error" ng-show="applicationForm.handleAddress.$error.required">
+                    你需要填写办事地点
+                </span>
+        </div>
+        <label>用车数量：</label>
+        <input name="carsNumber" type="number" class="form-control" value="10" ng-model="carCount"/>
+    </div>
+    <div class="col-lg-3">
+        <label>政治面貌：</label>
+        <input name="politicsStatus" class="form-control" type="text" ng-model="staffPoliticalStatus"/>
+        <label>操办事项：</label>
+        <select name="handleMatter" class="form-control" ng-model="eventType">
+            <option value="1" selected>婚嫁</option>
+            <option value="2">丧葬</option>
+        </select>
+        <label>操办桌数：</label>
+        <input name="handleTableNumber"  type="number" class="form-control" value="50" ng-model="tableCount"/>
+        <label>用车来源：</label>
+        <input name="carsSource" type="text"  class="form-control" required ng-model="carSource"/>
+        <div style="color:red" ng-show="applicationForm.carsSource.$dirty&&applicationForm.carsSource.$invalid">
+                <span class="error" ng-show="applicationForm.carsSource.$error.required">
+                    你需要填写用车来源
+                </span>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <label>单位职务：</label>
+        <select name="ocupertino" class="form-control" ng-model="staffJob">
+            <option value="1" >县级党员干部</option>
+            <option value="2">科级党员干部</option>
+            <option value="3">社区基层人员</option>
+            <option value="4">一般工作人员</option>
+        </select>
+        <label>操办次数：</label>
+        <input name="handleTime" type="number" class="form-control"  ng-model="eventCount"/>
+        <label>参加人数：</label>
+        <input name="participantsNumber" type="number" class="form-control" value="50" ng-model="peopleCount"/>
+        <label>所属部门：</label>
+        <select name="department" class="form-control" ng-options="depart.name for depart in departments" ng-model="staffOrgId"></select>
+    </div>
+    <div class="col-lg-9 col-md-6 col-sm-6 col-xs-6">
+        <label>宴请名单:</label>
+        <label class="sr-only" for="feteList">名称</label>
+        <input id="feteList" name="feteList" type="text" class="form-control"  ng-model="files[0].name" ng-disabled="files[0].name"/>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <!--Upload on form submit or button click-->
+        <label >文件选择:</label>
+        <div class=" btn btn-default form-control" ngf-select ng-model="files" name="files" ngf-multiple="true">Brower...</div>
+
+        <!--Upload right away after file selection:-->
+        <!--<div class="button" ngf-select="upload($file)">Upload on file select</div>-->
+        <!--<div class="button" ngf-select="uploadFiles($files)" multiple="multiple">Upload on file select</div>-->
+        <div ngf-no-file-drop>File Drag/Drop is not supported for this browser</div>
+    </div>
+
+
+    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-8">
+        <label>本人承诺：</label>
+        <textarea name="commitment" class="form-control" cols="100" rows="3" ng-model="selfPromise"></textarea>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-4">
+        <label>承诺人：</label>
+        <input name="acceptor" type="text" class="form-control" ng-model="promisePeople"/>
+    </div>
+    <button type="submit" ng-disabled="applicationForm.$invalid" ng-click="applicationFormSubmit()" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 btn btn-primary">确定</button>
+
+</form>

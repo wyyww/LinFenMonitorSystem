@@ -1,0 +1,219 @@
+<div class="sidebar-inner scrollable-sidebar">
+    <!--<div class="main-menu">-->
+    <ul class="breadcrumb">
+        <li><span class="primary-font"><i class="icon-home"></i></span>角色管理</li>
+    </ul>
+    <div class="row">
+        <div class="col-lg-1 col-md-1 col-lg-offset-11 col-md-offset-11">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2" ng-click="clearSubsystem()">新增</button>
+        </div>
+    </div>
+    <table class="table table-striped" id="dataTable">
+        <thead>
+        <tr class="showWay">
+            <th>
+                <!-- Split button -->
+                <div class="btn-group">
+                    <a class="inline-block" style="width:80px">角色名</a>
+                </div>
+            </th>
+            <th>
+                <div class="btn-group">
+                    <a class="inline-block" style="width:80px">操作</a>
+                </div>
+            </th>
+        </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="message in messages">
+                <td ng-click="md()" class="col-md-10">{{message.name}}</td>
+                <td class="col-md-2">
+                    <button class="btn btn-primary  btn-xs"  ng-model="message.id" ng-click="roleManagementGet(message.id)">修改</button>
+                    <button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal1"  ng-model="message.id" ng-click="roleManagementDelete(message.id)">删除</button>
+                </td>
+                    <!--修改用户 模态框-->
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h6 class="modal-title" id="myModalLabel">修改角色</h6>
+                            </div>
+                            <div class="modal-body">
+                                <div class="checkboxBox">
+                                    <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1">角色名：</span><input type="text" ng-model="roleName" class="form-control">
+                                    </div>
+                                    <fieldset>
+                                        <legend>子系统访问</legend>
+                                        <span class="col-lg-3" ><input type="checkbox" ng-model="role.item1"  ng-checked="subsystem[0].item" ng-click="isSelected(subsystem[0])"/>婚丧事宜申报</span>
+                                        <span class="col-lg-3" ><input type="checkbox" ng-model="role.item2" ng-checked="subsystem[1].item" ng-click="isSelected(subsystem[1])"/>四风问题举报</span>
+                                        <span class="col-lg-3"><input type="checkbox"  ng-model="role.item3" ng-checked="subsystem[2].item" ng-click="isSelected(subsystem[2])"/>廉政教育</span>
+                                        <span class="col-lg-3" ><input type="checkbox" ng-model="role.item4"  ng-checked="subsystem[3].item" ng-click="isSelected(subsystem[3])"/>系统设置</span>
+                                    </fieldset>
+
+                                    <fieldset>
+                                        <legend>婚丧</legend>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item5" ng-checked="subsystem[4].item" ng-click="isSelected(subsystem[4])"/>婚丧申报</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item6" ng-checked="subsystem[5].item" ng-click="isSelected(subsystem[5])">婚丧审批</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item7" ng-checked="subsystem[6].item" ng-click="isSelected(subsystem[6])">婚丧公示</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item8" ng-checked="subsystem[7].item" ng-click="isSelected(subsystem[7])">婚丧现场监督</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item9" ng-checked="subsystem[8].item" ng-click="isSelected(subsystem[8])">婚丧查询统计</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item10" ng-checked="subsystem[9].item" ng-click="isSelected(subsystem[9])">婚丧举报登记</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item11" ng-checked="subsystem[10].item" ng-click="isSelected(subsystem[10])">婚丧举报处理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item12" ng-checked="subsystem[11].item" ng-click="isSelected(subsystem[11])">婚丧查处处理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item13" ng-checked="subsystem[12].item" ng-click="isSelected(subsystem[12])">婚丧公开通报查看</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item14" ng-checked="subsystem[13].item" ng-click="isSelected(subsystem[13])">婚丧公开通报管理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item15" ng-checked="subsystem[14].item" ng-click="isSelected(subsystem[14])">婚丧纪律处分查看</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item16" ng-checked="subsystem[15].item" ng-click="isSelected(subsystem[15])">婚丧纪律处分管理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item17" ng-checked="subsystem[16].item" ng-click="isSelected(subsystem[16])">婚丧承诺书查看</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item18" ng-checked="subsystem[17].item" ng-click="isSelected(subsystem[17])">婚丧承诺书管理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item19" ng-checked="subsystem[18].item" ng-click="isSelected(subsystem[18])">婚丧专题教育查看</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item20" ng-checked="subsystem[19].item" ng-click="isSelected(subsystem[19])">婚丧专题教育管理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item21" ng-checked="subsystem[20].item" ng-click="isSelected(subsystem[20])">婚丧集中整改查看</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item22" ng-checked="subsystem[21].item" ng-click="isSelected(subsystem[21])">婚丧集中整改管理</span>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>投诉</legend>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item23" ng-checked="subsystem[22].item" ng-click="isSelected(subsystem[22])">四风问题投诉查看</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item24" ng-checked="subsystem[23].item" ng-click="isSelected(subsystem[23])">纪委书记信箱查看</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item25" ng-checked="subsystem[24].item" ng-click="isSelected(subsystem[24])">大操大办查看</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item26" ng-checked="subsystem[25].item" ng-click="isSelected(subsystem[25])">吃拿卡要查看</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item27" ng-checked="subsystem[26].item" ng-click="isSelected(subsystem[26])">投诉举报查看</span>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>廉政教育</legend>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item28" ng-checked="subsystem[27].item" ng-click="isSelected(subsystem[27])">必修课管理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item29" ng-checked="subsystem[28].item" ng-click="isSelected(subsystem[28])">选修课管理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item30" ng-checked="subsystem[29].item" ng-click="isSelected(subsystem[29])">廉政视频管理</span>
+                                    </fieldset>
+                                    <fieldset>
+                                        <legend>系统管理</legend>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item31" ng-checked="subsystem[30].item" ng-click="isSelected(subsystem[30])">用户管理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item32" ng-checked="subsystem[31].item" ng-click="isSelected(subsystem[31])">组织管理</span>
+                                        <span class="col-lg-3"><input type="checkbox" ng-model="role.item33" ng-checked="subsystem[32].item" ng-click="isSelected(subsystem[32])">角色管理</span>
+                                    </fieldset>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-model="message.id" ng-click="roleManagementUpdateAlter(message.id)">确定</button>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--删除的模态框-->
+                    <div class="modal fade bs-example-modal-sm" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="input-group">
+                                        <span>确认删除此数据</span>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" >确定</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </tr>
+        </tbody>
+    </table>
+    <!--增加用户 模态框-->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h6 class="modal-title" id="myModalLabel2">添加角色</h6>
+                </div>
+                <div class="modal-body">
+                    <div class="checkboxBox">
+                        <form name="newRole" novalidate>
+                            <span class="input-group-addon" id="basic-addon12">角色名：</span>
+                            <input type="text" name="newRoleName" ng-model="newRoleName" class="form-control" required />
+                            <span style="color:red" ng-show="newRole.newRoleName.$invalid&&newRole.$submitted">
+                                 <span ng-show="newRole.newRoleName.$error.required">用户名是必须的。</span>
+                            </span>
+                            <fieldset>
+                                <legend>子系统访问</legend>
+                                <span class="col-lg-3" ><input type="checkbox" ng-model="role.item1"  ng-checked="subsystem[0].item" ng-click="isSelected(subsystem[0])"/>婚丧事宜申报</span>
+                                <span class="col-lg-3" ><input type="checkbox" ng-model="role.item2" ng-checked="subsystem[1].item" ng-click="isSelected(subsystem[1])"/>四风问题举报</span>
+                                <span class="col-lg-3"><input type="checkbox"  ng-model="role.item3" ng-checked="subsystem[2].item" ng-click="isSelected(subsystem[2])"/>廉政教育</span>
+                                <span class="col-lg-3" ><input type="checkbox" ng-model="role.item4"  ng-checked="subsystem[3].item" ng-click="isSelected(subsystem[3])"/>系统设置</span>
+                            </fieldset>
+                            <fieldset>
+                                <legend>婚丧</legend>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item5" ng-checked="subsystem[4].item" ng-click="isSelected(subsystem[4])"/>婚丧申报</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item6" ng-checked="subsystem[5].item" ng-click="isSelected(subsystem[5])">婚丧审批</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item7" ng-checked="subsystem[6].item" ng-click="isSelected(subsystem[6])">婚丧公示</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item8" ng-checked="subsystem[7].item" ng-click="isSelected(subsystem[7])">婚丧现场监督</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item9" ng-checked="subsystem[8].item" ng-click="isSelected(subsystem[8])">婚丧查询统计</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item10" ng-checked="subsystem[9].item" ng-click="isSelected(subsystem[9])">婚丧举报登记</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item11" ng-checked="subsystem[10].item" ng-click="isSelected(subsystem[10])">婚丧举报处理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item12" ng-checked="subsystem[11].item" ng-click="isSelected(subsystem[11])">婚丧查处处理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item13" ng-checked="subsystem[12].item" ng-click="isSelected(subsystem[12])">婚丧公开通报查看</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item14" ng-checked="subsystem[13].item" ng-click="isSelected(subsystem[13])">婚丧公开通报管理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item15" ng-checked="subsystem[14].item" ng-click="isSelected(subsystem[14])">婚丧纪律处分查看</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item16" ng-checked="subsystem[15].item" ng-click="isSelected(subsystem[15])">婚丧纪律处分管理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item17" ng-checked="subsystem[16].item" ng-click="isSelected(subsystem[16])">婚丧承诺书查看</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item18" ng-checked="subsystem[17].item" ng-click="isSelected(subsystem[17])">婚丧承诺书管理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item19" ng-checked="subsystem[18].item" ng-click="isSelected(subsystem[18])">婚丧专题教育查看</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item20" ng-checked="subsystem[19].item" ng-click="isSelected(subsystem[19])">婚丧专题教育管理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item21" ng-checked="subsystem[20].item" ng-click="isSelected(subsystem[20])">婚丧集中整改查看</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item22" ng-checked="subsystem[21].item" ng-click="isSelected(subsystem[21])">婚丧集中整改管理</span>
+                            </fieldset>
+                            <fieldset>
+                                <legend>投诉</legend>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item23" ng-checked="subsystem[22].item" ng-click="isSelected(subsystem[22])">四风问题投诉查看</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item24" ng-checked="subsystem[23].item" ng-click="isSelected(subsystem[23])">纪委书记信箱查看</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item25" ng-checked="subsystem[24].item" ng-click="isSelected(subsystem[24])">大操大办查看</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item26" ng-checked="subsystem[25].item" ng-click="isSelected(subsystem[25])">吃拿卡要查看</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item27" ng-checked="subsystem[26].item" ng-click="isSelected(subsystem[26])">投诉举报查看</span>
+                            </fieldset>
+                            <fieldset>
+                                <legend>廉政教育</legend>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item28" ng-checked="subsystem[27].item" ng-click="isSelected(subsystem[27])">必修课管理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item29" ng-checked="subsystem[28].item" ng-click="isSelected(subsystem[28])">选修课管理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item30" ng-checked="subsystem[29].item" ng-click="isSelected(subsystem[29])">廉政视频管理</span>
+                            </fieldset>
+                            <fieldset>
+                                <legend>系统管理</legend>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item31" ng-checked="subsystem[30].item" ng-click="isSelected(subsystem[30])">用户管理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item32" ng-checked="subsystem[31].item" ng-click="isSelected(subsystem[31])">组织管理</span>
+                                <span class="col-lg-3"><input type="checkbox" ng-model="role.item33" ng-checked="subsystem[32].item" ng-click="isSelected(subsystem[32])">角色管理</span>
+                            </fieldset>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" data-dismiss="{{newRole.$invalid?'':'modal'}}" ng-click="roleManagementAdd()">确定
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="breadcrumb padding-xs fixed-bottom">
+        <div class="container\">
+            <span ng-click="onePage()"><a>首页</a></span>
+            <span ng-click="user.page<=1?'':befor()" class="{{user.page<=1?'disabled':''"><a class="glyphicon glyphicon-menu-left"></a></span>
+            <input type="text"  ng-model="user.page" style="width: 25px;padding-left: 5px;font-size: 16px;margin:0 10px; " />
+            <span ng-click="(user.page)<pageNum?after():''" class="{{(user.page)<pageNum?'disabled':''"><a class="glyphicon glyphicon-menu-right"></a></span>
+            <span ng-click="lastPage()"><a>尾页</a></span>
+            <span>{{'共'+pageNum+'页'}}</span>
+        </div>
+    </div>
+
+</div>
+

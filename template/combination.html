@@ -1,0 +1,240 @@
+<ul class="breadcrumb padding-ms">
+    <li><strong>组合查询</strong></li>
+</ul>
+<div class="row">
+    <div class=" col-xs-5">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="isState" aria-label="..." placeholder="申报类型:">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a  ng-click="isState='全部'">全部</a></li>
+                    <li><a  ng-click="isState='婚嫁'">婚嫁</a></li>
+                    <li><a  ng-click="isState='丧事'">丧事</a></li>
+                </ul>
+            </div><!-- /btn-group -->
+        </div>
+    </div>
+    <div class=" col-xs-5">
+        <div class="input-group">
+            <input type="text" class="form-control" ng-model="isNum" aria-label="..." placeholder="宴请人数:">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li><a  ng-click="isNum='全部'">全部</a></li>
+                    <li><a  ng-click="isNum='0-50'">0-50</a></li>
+                    <li><a  ng-click="isNum='50-100'">50-100</a></li>
+                    <li><a  ng-click="isNum='150-200'">150-200</a></li>
+                    <li><a  ng-click="isNum='200-250'">200-250</a></li>
+                </ul>
+            </div><!-- /btn-group -->
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class=" col-md-8 col-xs-10">
+        <label for="beforTime">申报时间：</label>
+        <div class="row">
+            <div class="col-xs-5">
+                <input type="date" id="beforTime" class="form-control" ng-model="beforTime" aria-label="..." placeholder="申报时间开始:">
+            </div>
+            <div class="col-xs-1" style="margin-top: 8px">至</div>
+            <div class="col-xs-5">
+                <input type="date" class="form-control" ng-model="afterTime" aria-label="..." placeholder="申报时间结束:">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-xs-10">
+        <label for="dinnerBeforTime">宴请时间：</label>
+        <div class="row">
+            <div class="col-xs-5">
+                <input type="date" id="dinnerBeforTime" class="form-control" ng-model="dinnerBeforTime" aria-label="..." placeholder="宴请时间开始:">
+            </div>
+            <div class="col-xs-1" style="margin-top: 8px">至</div>
+            <div class="col-xs-5">
+                <input type="date" class="form-control" ng-model="dinnerAfterTime" aria-label="..." placeholder="宴请时间结束:">
+            </div>
+        </div>
+    </div>
+    <button class="col-xs-2 btn btn-primary" ng-click="declarePreciseQuery()">查询</button>
+</div>
+
+<table class="table table-striped" id="dataTable">
+    <thead class="">
+    <tr>
+        <th>
+            <!-- Split button -->
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">申报人</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="combinationPositiveSequenceOrder('declarant')">正序</a></li>
+                    <li><a ng-click="combinationInvertedOrder('declarant')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li>列</li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">部门</a>
+                <a class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="combinationPositiveSequenceOrder('declareDepartment')">正序</a></li>
+                    <li><a ng-click="combinationInvertedOrder('declareDepartment')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">类型</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="combinationPositiveSequenceOrder('declareType')">正序</a></li>
+                    <li><a ng-click="combinationInvertedOrder('declareType')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">人数</a>
+                <a class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="combinationPositiveSequenceOrder('declareCount')">正序</a></li>
+                    <li><a ng-click="combinationInvertedOrder('declareCount')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">申报时间</a>
+                <a class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="combinationPositiveSequenceOrder('declareTime')">正序</a></li>
+                    <li><a ng-click="combinationInvertedOrder('declareTime')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">宴请时间</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="combinationPositiveSequenceOrder('declareEventTime')">正序</a></li>
+                    <li><a ng-click="combinationInvertedOrder('declareEventTime')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">状态</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a>正序</a></li>
+                    <li><a>倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th class="text-center">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="message in messages |  limitTo:isPage:(initialPage-1)*isPage ">
+        <td>{{message.staff}}</td>
+        <td>{{message.staffOrgName}}</td>
+        <td>{{message.eventType | isDeclare }}</td>
+        <td>{{message.peopleCount}}</td>
+        <td>{{message.createTime}}</td>
+        <td>{{message.eventDate}}</td>
+        <td>{{message.isHave}}</td>
+        <td class="text-center">
+            <button class="btn btn-primary  btn-xs" data-toggle="modal" data-target="#myModal">公示内容</button>
+            <span class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal1">公示结果</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="breadcrumb padding-xs fixed-bottom">
+    <div class="container\">
+        <span ng-click="initialPage=1"><a>首页</a></span>
+        <span ng-click="initialPage<=1?'':initialPage=initialPage-1" class="{{initialPage<=1?'disabled':''"><a class="glyphicon glyphicon-menu-left"></a></span>
+        <input type="text"  ng-model="initialPage" style="width: 25px;padding-left: 5px;font-size: 16px"/>
+        <span ng-click="(initialPage)<pageNum ?initialPage=initialPage+1:''" class="{{(initialPage+isPage)<pageNum?'disabled':''"><a class="glyphicon glyphicon-menu-right">下一页</a></span>
+        <span ng-click="initialPage=pageNum"><a>尾页</a></span>
+        <span>{{'共'+pageNum+'页'}}</span>
+    </div>
+</div>
+<!-- /wrapper -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h6 class="modal-title" id="myModalLabel">意见</h6>
+            </div>
+            <div>
+                <div class="input-group">
+                    <span class="input-group-addon">内容</span>
+                    <textarea type="text" class="form-control"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="sure()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h6 class="modal-title" id="myModalLabel1">意见</h6>
+            </div>
+            <div>
+                <div class="input-group">
+                    <span class="input-group-addon">内容</span>
+                    <textarea type="text" class="form-control"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="refuse()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script class="ng-scope">
+    $(function()	{
+        $('#dataTable').dataTable();
+    });
+</script>

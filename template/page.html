@@ -1,0 +1,168 @@
+<div class="wrapper">
+    <header class="top-nav">
+        <div class="top-nav-inner">
+            <div class="nav-header">
+                <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleSM">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+                <ul class="nav-notification pull-right">
+                    <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cog fa-lg"></i></a>
+                        <span class="badge badge-danger bounceIn">1</span>
+                        <ul class="dropdown-menu dropdown-sm pull-right user-dropdown">
+                            <li class="user-avatar">
+                                <img src="images/profile/profile1.jpg" alt="" class="img-circle">
+                                <div class="user-content">
+                                    <h5 class="no-m-bottom">Jane Doe</h5>
+                                    <div class="m-top-xs">
+                                        <a href="" class="m-right-sm">Profile</a>
+                                        <a href="">Log out</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="">
+                                    Inbox
+                                    <span class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    Notification
+                                    <span class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="sidebarRight-toggle">
+                                    Message
+                                    <span class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">Setting</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <a href="index.html" class="brand">
+                    <i class="fa fa-database"></i><span class="brand-name">临汾党风廉政建设监督系统</span>
+                </a>
+            </div>
+            <div class="nav-container">
+                <button type="button" class="navbar-toggle pull-left sidebar-toggle" id="sidebarToggleLG">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <ul class="nav-notification">
+                    <li class="search-list">
+                        <div class="search-input-wrapper">
+                            <div class="search-input">
+                                <input type="text" class="form-control input-sm inline-block">
+                                <a href="#" class="input-icon text-normal"><i class="ion-ios7-search-strong"></i></a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="pull-right m-right-sm">
+                    <div class="user-block hidden-xs">
+                        <a href="#" id="userToggle" data-toggle="dropdown">
+                            <img src="images/sign.png" alt="" class="img-circle inline-block user-profile-pic">
+                            <div class="user-detail inline-block">
+                                Admin
+                                <i class="fa fa-angle-down"></i>
+                            </div>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+        </div><!-- ./top-nav-inner -->
+    </header>
+
+    <!--中间内容区域-->
+    <!--<div ng-controller="governmentController">-->
+    <aside class="sidebar-menu fixed">
+        <div class="sidebar-inner scrollable-sidebar">
+            <div class="main-menu">
+                <ul class="accordion">
+                    <li class="openable bg-palette3">
+                        <a href="#">
+                                        <span class="menu-content block">
+                                            <span class="text m-left-sm">申报管理</span>
+                                            <span class="submenu-icon"></span>
+                                        </span>
+                            <span class="menu-content-hover block">
+                                    application and management
+                                </span>
+                        </a>
+                        <ul class="submenu bg-palette4">
+                            <li><a href="#/page/application"><span class="submenu-label">申报</span></a></li>
+                            <li><a href="#/page/approve"><span class="submenu-label">审批</span></a></li>
+                            <li><a href="#/page/publicity"><span class="submenu-label">公示</span></a></li>
+                            <li><a href="#/page/supervision"><span class="submenu-label">现场监督</span></a></li>
+                            <li class="openable">
+                                <a href="#">
+                                    <small class="badge badge-success badge-square bounceIn animation-delay2 m-left-xs pull-right">
+                                        3
+                                    </small>
+                                    <span class="submenu-label">查询统计</span>
+                                </a>
+                                <ul class="submenu third-level">
+                                    <li><a href="#/page/precise"><span class="submenu-label">精确查询</span></a></li>
+                                    <li><a href="#/page/combination"><span class="submenu-label">组合查询</span></a></li>
+                                    <li><a href="#/page/statistics"><span class="submenu-label">数量统计</span></a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="openable bg-palette3">
+                        <a href="#">
+                                        <span class="menu-content block">
+                                            <span class="text m-left-sm">责任追究</span>
+                                            <span class="submenu-icon"></span>
+                                        </span>
+                            <span class="menu-content-hover block">
+                                        Education reform
+                                </span>
+                        </a>
+                        <ul class="submenu">
+                            <li><a href="#/page/responsibility"><span class="submenu-label">公开通报</span></a></li>
+                            <li><a href="#/page/punishment"><span class="submenu-label">纪律处分</span></a></li>
+                        </ul>
+                    </li>
+                    <li class="openable bg-palette3">
+                        <a href="#">
+                                        <span class="menu-content block">
+                                            <span class="text m-left-sm">系统设置</span>
+                                            <span class="submenu-icon"></span>
+                                        </span>
+                            <span class="menu-content-hover block">
+                                    Set
+                                </span>
+                        </a>
+                        <ul class="submenu bg-palette4">
+                            <li><a href="#/page/userManagement"><span class="submenu-label">用户管理</span></a></li>
+                            <li><a href="#/page/roleManagement"><span class="submenu-label">角色管理</span></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div><!-- sidebar-inner -->
+    </aside>
+
+    <div class="main-container">
+        <div class="padding-md">
+            <ui-view name="mainController">
+                <h2 class="title">临汾经济技术开发区党风廉政建设监督系统</h2>
+            </ui-view>
+
+        </div>
+    </div><!-- /main-container -->
+    <!--</div>-->
+</div>
+

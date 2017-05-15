@@ -1,0 +1,294 @@
+<ul class="breadcrumb padding-ms">
+    <li><strong>公示</strong></li>
+</ul>
+<div class="row">
+    <div class="input-group col-lg-4 col-md-3">
+        <input type="text" class="form-control" ng-model="isname" aria-label="..." placeholder="申报人:">
+        <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle"  data-toggle="dropdown" aria-haspopup="true" ng-init="isState='未公示'" aria-expanded="false">{{isState}}<span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li><a ng-click="state0()">未公示</a></li>
+                <li><a ng-click="state1()">已公示</a></li>
+            </ul>
+        </div><!-- /btn-group -->
+        <div class="col-lg-2 col-md-2">
+            <button class="btn btn-default" ng-click="publicQuery()">查询</button>
+        </div>
+    </div>
+</div>
+
+
+<table class="table table-striped" id="dataTable">
+    <thead class="">
+    <tr>
+        <th>
+            <!-- Split button -->
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">申报人</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="publicitypositiveSequenceOrder('declarant')">正序</a></li>
+                    <li><a ng-click="publicityinvertedOrder('declarant')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li>列</li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">部门</a>
+                <a class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="publicitypositiveSequenceOrder('declareDepartment')">正序</a></li>
+                    <li><a ng-click="publicityinvertedOrder('declareDepartment')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">类型</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="publicitypositiveSequenceOrder('declareType')">正序</a></li>
+                    <li><a ng-click="publicityinvertedOrder('declareType')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">人数</a>
+                <a class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="publicitypositiveSequenceOrder('declareCount')">正序</a></li>
+                    <li><a ng-click="publicityinvertedOrder('declareCount')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">申报时间</a>
+                <a class=" dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="publicitypositiveSequenceOrder('declareTime')">正序</a></li>
+                    <li><a ng-click="publicityinvertedOrder('declareTime')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">宴请时间</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a ng-click="publicitypositiveSequenceOrder('declareEventTime')">正序</a></li>
+                    <li><a ng-click="publicityinvertedOrder('declareEventTime')">倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th>
+            <div class="btn-group">
+                <a class="inline-block" style="width:80px">状态</a>
+                <a class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a >正序</a></li>
+                    <li><a >倒序</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">列</a></li>
+                </ul>
+            </div>
+        </th>
+        <th class="text-center">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--<tr ng-repeat="message in messages | filter:{name:isname,isHave:(isState=='公示查询'?'':isState)} | limitTo: isPage:(initialPage-1)*isPage ">-->
+    <tr ng-repeat="message in messages">
+        <td ng-dblclick="md(message.id)">{{message.staff}}</td>
+        <td ng-dblclick="md(message.id)">{{message.staffOrgName}}</td>
+        <td ng-dblclick="md(message.id)">{{message.eventType | eventType}} </td>
+        <td ng-dblclick="md(message.id)">{{message.peopleCount}}</td>
+        <td ng-dblclick="md(message.id)">{{message.createTime}}</td>
+        <td ng-dblclick="md(message.id)">{{message.eventDate}}</td>
+        <td ng-dblclick="md(message.id)">{{user.bulletinStatus | bulletin}}</td>
+        <td class="text-center">
+            <button class="btn btn-primary  btn-xs" data-toggle="modal" data-target="#myModal" ng-click="getId(message.id)">公示内容</button>
+            <span class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModal1" ng-click="getThisId(message.id)">公示结果</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div class="breadcrumb padding-xs fixed-bottom">
+    <div class="container">
+        <span ng-click="onePage()"><a>首页</a></span>
+        <span ng-click="user.page<=1?'':befor()" class="{{user.page<=1?'disabled':''"><a class="glyphicon glyphicon-menu-left"></a></span>
+        <input type="text"  ng-model="user.page" style="width: 25px;padding-left: 5px;font-size: 16px;margin:0 10px; " />
+        <span ng-click="(user.page)<pageNum?after():''" class="{{(user.page)<pageNum?'disabled':''"><a class="glyphicon glyphicon-menu-right"></a></span>
+        <span ng-click="lastPage()"><a>尾页</a></span>
+        <span>{{'共'+pageNum+'页'}}</span>
+    </div>
+</div>
+<!-- /wrapper -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h6 class="modal-title" id="myModalLabel">意见</h6>
+            </div>
+            <div>
+                <div class="input-group">
+                    <span class="input-group-addon">内容</span>
+                    <textarea type="text" class="form-control" ng-model="content1"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="publicTextSubmit()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <div class="modal-title" id="myModalLabel1">结果:
+                    <input type="radio" style="margin-left: 50px"  name="isPass" ng-click="status=1" ng-model="status">通过
+                    <input type="radio" style="margin-left: 50px" name="isPass" ng-click="status=2" ng-model="status">有异议
+                </div>
+            </div>
+            <div>
+                <div class="input-group">
+                    <span class="input-group-addon">内容</span>
+                    <textarea type="text" class="form-control" ng-model="content2" ></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="publicResuleSubmit()">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <div id="myModalLabel2">详细</div>
+            </div>
+            <div class="container-fluid">
+                <table class="table table-bordered">
+                    <tr class="active row">
+                        <td class="col-md-2 col-xs-3">申报人:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.staff}}</td>
+                    </tr>
+                    <tr class="success row">
+                        <td class="col-md-2 col-xs-3">与申报人关系:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.staffRelationship | relationship}}</td>
+                    </tr>
+                    <tr class="warning row">
+                        <td class="col-md-2 col-xs-3">政治面貌:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.staffPoliticalStatus}}</td>
+                    </tr>
+                    <tr class="info row">
+                        <td class="col-md-2 col-xs-3">单位职务:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.staffJob | Job}}</td>
+                    </tr>
+                    <tr class="active row">
+                        <td class="col-md-2 col-xs-3">配偶:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.staffSpouse}}</td>
+                    </tr>
+                    <tr class="success row">
+                        <td class="col-md-2 col-xs-3">联系电话:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.staffPhone}}</td>
+                    </tr>
+                    <tr class="warning row">
+                        <td class="col-md-2 col-xs-3">操办事项:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.eventType | eventType}}</td>
+                    </tr>
+                    <tr class="danger row">
+                        <td class="col-md-2 col-xs-3">操办次数:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.eventCount}}</td>
+                    </tr>
+                    <tr class="info row">
+                        <td class="col-md-2 col-xs-3">操办时间:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.eventDate}}</td>
+                    </tr>
+                    <tr class="active row">
+                        <td class="col-md-2 col-xs-3">操办地点:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.location}}</td>
+                    </tr>
+                    <tr class="success row">
+                        <td class="col-md-2 col-xs-3">操办卓数:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.tableCount}}</td>
+                    </tr>
+                    <tr class="warning row">
+                        <td class="col-md-2 col-xs-3">参加人数:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.peopleCount}}</td>
+                    </tr>
+                    <tr class="danger row">
+                        <td class="col-md-2 col-xs-3">邀请范围:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.peopleRange}}</td>
+                    </tr>
+                    <tr class="info row">
+                        <td class="col-md-2 col-xs-3">用车数量:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.carCount}}</td>
+                    </tr>
+                    <tr class="active row">
+                        <td class="col-md-2 col-xs-3">用车来源:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.carSource}}</td>
+                    </tr>
+                    <tr class="success row">
+                        <td class="col-md-2 col-xs-3">上传文件:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.attachmentFileCode}}</td>
+                    </tr>
+                    <tr class="warning row">
+                        <td class="col-md-2 col-xs-3">本人承诺:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.selfPromise}}</td>
+                    </tr>
+                    <tr class="danger row">
+                        <td class="col-md-2 col-xs-3">承诺人:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.promisePeople}}</td>
+                    </tr>
+                    <tr class="danger row">
+                        <td class="col-md-2 col-xs-3">所属部门:</td>
+                        <td class="col-md-10 col-xs-9">{{isData.staffOrgId}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script class="ng-scope">
+    $(function()	{
+        $('#dataTable').dataTable();
+    });
+</script>
