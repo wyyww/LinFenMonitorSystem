@@ -12,8 +12,6 @@ angular.module('myApp.controller')
             sessionStorage.setItem('token',JSON.stringify($scope.token));
             $state.go('page');
         }, function errorCallback(response) {
-
         });
     }
-
 }])
